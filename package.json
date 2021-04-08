@@ -1,0 +1,20 @@
+{
+  "name": "finances",
+  "version": "1.0.0",
+  "description": "System to take care of your finances",
+  "main": "src/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "André Almeida <ab.rodriguesalmeida@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@vue/cli": "^4.5.12",
+    "chai": "^4.3.4",
+    "export-config": "^1.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "mocha": "^8.3.2",
+    "winston": "^3.3.3"
+  }
+}
