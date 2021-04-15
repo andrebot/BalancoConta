@@ -22,7 +22,7 @@ module.exports = {
       }
     }, {
       test: /\.styl$/,
-      loader: 'stylus-loader',
+      use: ['style-loader', 'css-loader', 'stylus-loader'],
     }]
   },
   optimization: {

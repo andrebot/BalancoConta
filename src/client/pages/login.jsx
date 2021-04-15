@@ -1,8 +1,9 @@
 import React from 'react';
+import './login.styl';
 
 const page = () => {
   return (
-    <div>Hello World!!!</div>
+    <div className="test">Hello World!!!</div>
   );
 };
 
