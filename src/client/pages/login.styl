@@ -1,3 +1,21 @@
-.test
-  background-color black
-  color white
+.login-page
+  height 100%
+  display grid
+  grid-template-areas "top" "bottom"
+  grid-template-columns 100%
+  grid-template-rows 30% 70%
+
+  .top-section
+    background repeating-linear-gradient(135deg, #d1d1d1, #d1d1d1 5px, #ffffff 5px, #ffffff 10px)
+    grid-area top
+
+  .bottom-section
+    grid-area bottom
+    background #2e8df1
+
+    .login-wrapper
+      width 300px
+      background-color #ffffff
+      border-radius: 5px
+      display grid
+      box-shadow 1px 1px 5px 0 #000
