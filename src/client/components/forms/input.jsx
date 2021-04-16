@@ -5,7 +5,7 @@ import './input.styl';
 const FormInput = ({ label, type = 'text', name, }) => {
   return (
     <div className="form-input">
-      <input type={type} name={name} autoComplete="off"/>
+      <input type={type} name={name} autoComplete="off" required/>
       <label htmlFor={name} className="label-name">
         <span className="content-name">{label}</span>
       </label>
