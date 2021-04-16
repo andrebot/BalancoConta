@@ -10,15 +10,19 @@
     padding: 7px 0 0 0
     outline: none
 
-    &:focus + .label-name .content-name,
+    &:focus 
+      &+ .label-name
+        & .content-name
+          transform: translateY(-70%)
+          font-size: 14px
+          color: #5fa8d3
+
+        &::after
+          transform: translateX(0%)
+
     &:valid + .label-name .content-name
       transform: translateY(-70%)
       font-size: 14px
-      color: #5fa8d3
-
-    &:focus + .label-name::after,
-    &:valid + .label-name::after
-      transform: translateX(0%)
 
   label
     position: absolute
@@ -36,7 +40,7 @@
       bottom: -1px
       height: 100%
       width: 100%
-      border-bottom: 3px solid #5fa8d3
+      border-bottom: 2px solid #5fa8d3
       transform: translateX(-100%)
       transition: all 0.3s ease
 
