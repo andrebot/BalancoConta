@@ -10,7 +10,9 @@ const page = () => {
       <div className="bottom-section">
         <div className="login-wrapper">
           <div>Login</div>
-          <FormInput label="Username" name="username" />
+          <FormInput label="Username" name="username" errors={['required']}>
+            <span htmlFor="required">Error message 1</span>
+          </FormInput>
           <FormInput label="Password" name="password" type="password"/>
           <button>Login</button>
           <button>Forgot password</button>
