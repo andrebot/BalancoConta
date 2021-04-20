@@ -2,13 +2,18 @@ import React from 'react';
 import propTypes from 'prop-types';
 import './input.styl';
 
-const FormInput = ({ label, type = 'text', name, children, errors = [] }) => {
+const FormInput = ({ label, type = 'text', name, children, value, setValue, errors = [] }) => {
   const errorMessages = children ? [].concat(children) : [];
+  const onChange = evt => {
+    const { value } = evt.target;
+
+    setValue(value);
+  };
 
   return (
     <div className="form-input-wrapper">
       <div className="form-input">
-        <input type={type} name={name} autoComplete="off" required/>
+        <input value={value} onChange={onChange} type={type} name={name} autoComplete="off" required/>
         <label htmlFor={name} className="label-name">
           <span className="content-name">{label}</span>
         </label>
@@ -26,13 +31,18 @@ const FormInput = ({ label, type = 'text', name, children, errors = [] }) => {
 
 FormInput.propTypes = {
   label: propTypes.string.isRequired,
-  type: propTypes.string,
+  setValue: propTypes.func.isRequired,
   name: propTypes.string.isRequired,
+  type: propTypes.string,
   errors: propTypes.arrayOf(propTypes.string),
   children: propTypes.oneOfType([
     propTypes.arrayOf(propTypes.node),
     propTypes.node,
   ]),
+  value: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.number,
+  ]).isRequired,
 };
 
 FormInput.defaultProps = {
