@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "System to take care of your finances",
   "main": "src/server/index.js",
+  "engines": {
+    "node": "14.16.1"
+  },
   "scripts": {
     "dev": "webpack --watch --mode=development",
     "build": "webpack --mode=production",

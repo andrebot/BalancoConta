@@ -16,7 +16,7 @@ const FormInput = ({ label, type = 'text', name, children, errors = [] }) => {
       <div className="error-message">
         {errorMessages.length > 0 && errorMessages.map((child, index ) => (
           <div key={index} style={{
-            visibility: errors.indexOf(child.props.htmlFor) > -1 ? 'visible' : 'hidden',
+            display: errors.indexOf(child.props.htmlFor) > -1 ? 'block' : 'none',
           }}>{child}</div>
         ))}
       </div>
