@@ -1,0 +1,32 @@
+@import '../../colors.styl'
+
+.progress-bar
+  height: 5px
+  background-color: primary300
+  position: relative
+  overflow: hidden
+
+  .progress
+    position: absolute
+    width: 10%
+    height: 100%
+    animation: size 1000ms infinite, move 1000ms infinite
+    background-color: primary900
+
+@keyframes size {
+  from {
+    width: 10%
+  }
+  to {
+    width: 40%
+  }
+}
+
+@keyframes move {
+  from {
+    left: 0px
+  }
+  to {
+    left: 100%
+  }
+}
