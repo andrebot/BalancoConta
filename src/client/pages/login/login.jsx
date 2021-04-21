@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { Link } from 'react-router-dom';
 import { setUsername, setPassword } from './actions.js';
 import reducer from './reducer.js';
 import './login.styl';
@@ -44,12 +45,11 @@ const page = () => {
           >
             <span htmlFor="required">Please add your password</span>
           </FormInput>
-          <Button style={{
-            marginBottom: 10,
-          }}>Login</Button>
-          <Button style={{
-            marginBottom: 10,
-          }} type={"type2"}>Reset password</Button>
+          <Button style={{ marginBottom: 10, marginTop: 20 }}>Login</Button>
+          <Button style={{ marginBottom: 10 }} type={"type2"}>Reset password</Button>
+          <div className="new-account-link">
+            <span>Need an account? <Link to="/signup ">Sign up</Link></span>
+          </div>
         </div>
       </div>
     </div>
