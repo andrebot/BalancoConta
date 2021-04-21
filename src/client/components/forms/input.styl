@@ -2,7 +2,7 @@
 
 .form-input-wrapper
   .form-input
-    height: 32px
+    height: 37px
     position: relative
     overflow: hidden
 
@@ -14,13 +14,14 @@
       height: 100%
       width: 100%
       border: none
-      padding: 7px 0 0 0
+      padding: 9px 0 0 0
       outline: none
+      font-size: 1.25rem
 
       &:focus 
         &+ .label-name
           & .content-name
-            transform: translateY(-70%)
+            transform: translateY(-80%)
             font-size: 14px
             color: primary500
 
@@ -28,7 +29,7 @@
             transform: translateX(0%)
 
       &:valid + .label-name .content-name
-        transform: translateY(-70%)
+        transform: translateY(-80%)
         font-size: 14px
 
     label

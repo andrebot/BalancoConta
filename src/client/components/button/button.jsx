@@ -8,10 +8,11 @@ const Button = function ({ children, disabled = false, action, style, type = '' 
     const circle = document.createElement('span');
     const diameter = Math.max(btn.clientWidth, btn.clientHeight);
     const radius = diameter / 2;
+    const boundingBox = btn.getBoundingClientRect();
 
     circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${evt.clientX - (btn.offsetLeft + radius)}px`;
-    circle.style.top = `${evt.clientY - (btn.offsetTop + radius)}px`;
+    circle.style.left = `${evt.clientX - (boundingBox.x + radius)}px`;
+    circle.style.top = `${evt.clientY - (boundingBox.y + radius)}px`;
     circle.classList.add('ripple');
 
     setTimeout(() => {
