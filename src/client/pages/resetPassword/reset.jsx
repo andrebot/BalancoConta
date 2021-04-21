@@ -32,7 +32,7 @@ const page = () => {
             value={state.username}
             setValue={setUsernameAction}
           >
-            <span htmlFor="required">Please add your username</span>
+            <span htmlFor="required">Please add your email</span>
           </FormInput>
           <Button style={{ marginBottom: 10, marginTop: 20 }}>Reset Password</Button>
           <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin}>Cancel</Button>

@@ -1,8 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { debounce } from 'throttle-debounce';
 import './button.styl';
 
 const Button = function ({ children, disabled = false, action, style, type = '' }) {
+  const debounceAction = debounce(200, evt => action(evt));
   const createRipple = (evt) => {
     const btn = evt.target;
     const circle = document.createElement('span');
@@ -22,9 +24,7 @@ const Button = function ({ children, disabled = false, action, style, type = '' 
     btn.appendChild(circle);
 
     if (action && action instanceof Function) {
-      setTimeout(() => {
-        action(evt);
-      }, 200);
+      debounceAction(evt);
     }
   };
 
