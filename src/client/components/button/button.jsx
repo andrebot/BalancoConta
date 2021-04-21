@@ -27,7 +27,7 @@ const Button = function ({ children, disabled = false, action, style, type = '' 
 
   return (
     <div style={style}>
-      <button className={`button ${type}`} onClick={createRipple} disabled={disabled}>
+      <button className={`button ${type} ${disabled ? 'disabled' : ''}`} onClick={createRipple} disabled={disabled}>
         {children}
       </button>
     </div>
