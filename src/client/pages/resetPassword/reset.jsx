@@ -6,6 +6,7 @@ import './reset.styl';
 
 import FormInput from '../../components/forms/input.jsx';
 import Button from '../../components/button/button.jsx';
+import ProgressBar from '../../components/progressbar/progressbar.jsx';
 
 const page = () => {
   const history = useHistory();
@@ -36,6 +37,9 @@ const page = () => {
           </FormInput>
           <Button style={{ marginBottom: 10, marginTop: 20 }}>Reset Password</Button>
           <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin}>Cancel</Button>
+          <div className="bar-holder">
+            <ProgressBar />
+          </div>
         </div>
       </div>
     </div>
