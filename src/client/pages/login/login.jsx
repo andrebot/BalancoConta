@@ -19,7 +19,9 @@ const page = () => {
 
   return (
     <div className="login-page">
-      <div className="top-section"></div>
+      <div className="top-section">
+        <span className="page-title">Finanças</span>
+      </div>
       <div className="bottom-section">
         <div className="login-wrapper">
           <div className="title">Login</div>
