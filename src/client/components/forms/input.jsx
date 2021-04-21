@@ -1,13 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { throttle } from 'throttle-debounce';
 import './input.styl';
 
 const FormInput = ({ label, type = 'text', name, children, value, setValue, errors = [] }) => {
   const errorMessages = children ? [].concat(children) : [];
+  const setValueThro = throttle(1000, value => setValue(value));
   const onChange = evt => {
     const { value } = evt.target;
 
-    setValue(value);
+    setValueThro(value);
   };
 
   return (
