@@ -1,0 +1,42 @@
+@import '../../colors.styl'
+
+.signup-page
+  height: 100%
+  display: grid
+  grid-template-areas: "top" "bottom"
+  grid-template-columns: 100%
+  grid-template-rows: 30% 70%
+
+  .top-section
+    background-color: #fff
+    grid-area: top
+    text-align: center
+    height: 100%
+    display: table
+
+    .page-title
+      font-size: 62px
+      color: analogousD800
+      display: table-cell
+      vertical-align: middle
+
+  .bottom-section
+    grid-area: bottom
+    background: primary900
+    position: relative
+
+    .signup-wrapper
+      width: 500px
+      background-color: #ffffff
+      border-radius: 5px
+      display: grid
+      box-shadow: 1px 1px 5px 0 #000
+      padding: 50px
+      position: absolute
+      left: calc(50% - 300px)
+      top: -40px
+
+      .title
+        text-align: center
+        font-size: 3.25rem
+        margin-bottom: 30px

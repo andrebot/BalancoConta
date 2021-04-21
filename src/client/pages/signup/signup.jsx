@@ -1,30 +1,36 @@
 import React, { useReducer } from 'react';
-import { Link } from 'react-router-dom';
-import { setUsername, setPassword } from './actions.js';
+import { useHistory } from 'react-router-dom';
+import { setUsername, setPassword, setConfirmPassword } from './actions.js';
 import reducer from './reducer.js';
-import './login.styl';
+import './signup.styl';
 
 import FormInput from '../../components/forms/input.jsx';
 import Button from '../../components/button/button.jsx';
 
 const page = () => {
+  const history = useHistory();
   const [state, dispatch] = useReducer(reducer, {
     username: '',
     password: '',
+    confirmPassword: '',
     usernameErrors: [],
     passwordErrors: [],
+    confirmPasswordErrors: [],
   });
   const setUsernameAction = username => dispatch(setUsername(username));
   const setPasswordAction = password => dispatch(setPassword(password));
+  const setConfirmPasswordAction = password => dispatch(setConfirmPassword(password));
+  const backToLogin = () => {
+    history.push('/');
+  };
 
   return (
-    <div className="login-page">
+    <div className="signup-page">
       <div className="top-section">
-        <span className="page-title">Finanças</span>
+        <span className="page-title">Sign Up</span>
       </div>
       <div className="bottom-section">
-        <div className="login-wrapper">
-          <div className="title">Login</div>
+        <div className="signup-wrapper">
           <FormInput
             label="Email"
             name="username"
@@ -44,11 +50,19 @@ const page = () => {
           >
             <span htmlFor="required">Please add your password</span>
           </FormInput>
-          <Button style={{ marginBottom: 10, marginTop: 20 }}>Login</Button>
-          <Button style={{ marginBottom: 10 }} type={"type2"}>Reset password</Button>
-          <div className="new-account-link">
-            <span>Need an account? <Link to="/signup ">Sign up</Link></span>
-          </div>
+          <FormInput
+            label="Confirm Password"
+            name="confirmPassword"
+            type="password"
+            errors={state.confirmPasswordErrors}
+            value={state.confirmPassword}
+            setValue={setConfirmPasswordAction}
+          >
+            <span htmlFor="required">Please confirm your password</span>
+            <span htmlFor="notEqual">Not the same as your password</span>
+          </FormInput>
+          <Button style={{ marginBottom: 10, marginTop: 20 }}>Sign up</Button>
+          <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin}>Cancel</Button>
         </div>
       </div>
     </div>

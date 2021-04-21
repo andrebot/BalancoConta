@@ -22,7 +22,9 @@ const Button = function ({ children, disabled = false, action, style, type = '' 
     btn.appendChild(circle);
 
     if (action && action instanceof Function) {
-      action(evt);
+      setTimeout(() => {
+        action(evt);
+      }, 200);
     }
   };
 

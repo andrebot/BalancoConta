@@ -14,7 +14,6 @@ export default (state, action) => {
           password: action.password
         };
       }
-      break;
     case 'username':
       if (!action.username) {
         return {
@@ -29,7 +28,26 @@ export default (state, action) => {
           username: action.username,
         };
       }
-      break;
+    case 'confirmPassword':
+      if (!action.confirmPassword) {
+        return {
+          ...state,
+          confirmPassword: action.confirmPassword,
+          confirmPasswordErrors: ['required'],
+        };
+      } else if (action.confirmPassword !== state.password) {
+        return {
+          ...state,
+          confirmPasswordErrors: ['notEqual'],
+          confirmPassword: action.confirmPassword,
+        };
+      } else {
+        return {
+          ...state,
+          confirmPasswordErrors: [],
+          confirmPassword: action.confirmPassword,
+        };
+      }
     default:
       return state;
   }
