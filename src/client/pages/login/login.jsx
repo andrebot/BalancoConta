@@ -44,7 +44,7 @@ const page = () => {
           </FormInput>
           <Button style={{
             marginBottom: 10,
-          }} disabled={true}>Login</Button>
+          }}>Login</Button>
           <Button style={{
             marginBottom: 10,
           }} type={"type2"}>Reset password</Button>
