@@ -22,7 +22,7 @@ const page = () => {
       <div className="top-section"></div>
       <div className="bottom-section">
         <div className="login-wrapper">
-          <div>Login</div>
+          <div className="title">Login</div>
           <FormInput
             label="Username"
             name="username"
