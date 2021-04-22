@@ -1,11 +1,17 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { setUsername, setPassword, setConfirmPassword } from './actions.js';
+import {
+  doSignUp,
+  setUsername,
+  setPassword,
+  setConfirmPassword,
+} from './actions.js';
 import reducer from './reducer.js';
 import './signup.styl';
 
 import FormInput from '../../components/forms/input.jsx';
 import Button from '../../components/button/button.jsx';
+import ProgressBar from '../../components/progressbar/progressbar.jsx';
 
 const page = () => {
   const history = useHistory();
@@ -16,13 +22,20 @@ const page = () => {
     usernameErrors: [],
     passwordErrors: [],
     confirmPasswordErrors: [],
+    isRegistering: false,
+    hasRegistered: false,
   });
   const setUsernameAction = username => dispatch(setUsername(username));
   const setPasswordAction = password => dispatch(setPassword(password));
   const setConfirmPasswordAction = password => dispatch(setConfirmPassword(password));
-  const backToLogin = () => {
-    history.push('/');
-  };
+  const startRegistration = () => dispatch(doSignUp());
+  const backToLogin = () => history.push('/');
+
+  useEffect(() => {
+    if (state.isRegistering && !state.hasRegistered) {
+      setTimeout(() => history.push('/'), 3000);
+    }
+  }, [state.isRegistering]);
 
   return (
     <div className="signup-page">
@@ -37,6 +50,7 @@ const page = () => {
             errors={state.usernameErrors}
             value={state.username}
             setValue={setUsernameAction}
+            disabled={state.isRegistering}
           >
             <span htmlFor="required">Please add your username</span>
           </FormInput>
@@ -47,6 +61,7 @@ const page = () => {
             errors={state.passwordErrors}
             value={state.password}
             setValue={setPasswordAction}
+            disabled={state.isRegistering}
           >
             <span htmlFor="required">Please add your password</span>
           </FormInput>
@@ -57,12 +72,29 @@ const page = () => {
             errors={state.confirmPasswordErrors}
             value={state.confirmPassword}
             setValue={setConfirmPasswordAction}
+            disabled={state.isRegistering}
           >
             <span htmlFor="required">Please confirm your password</span>
             <span htmlFor="notEqual">Not the same as your password</span>
           </FormInput>
-          <Button style={{ marginBottom: 10, marginTop: 20 }}>Sign up</Button>
-          <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin}>Cancel</Button>
+          <Button
+            style={{ marginBottom: 10, marginTop: 20 }}
+            disabled={state.isRegistering}
+            action={startRegistration}
+          >
+            Sign up
+          </Button>
+          <Button 
+            style={{ marginBottom: 10 }}
+            type={"type2"}
+            action={backToLogin}
+            disabled={state.isRegistering}
+          >
+            Cancel
+          </Button>
+          <div className={`bar-holder ${state.isRegistering ? 'loading' : ''}`}>
+            <ProgressBar />
+          </div>
         </div>
       </div>
     </div>

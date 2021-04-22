@@ -18,3 +18,9 @@ export function setConfirmPassword (confirmPassword) {
     confirmPassword,
   };
 }
+
+export function doSignUp() {
+  return {
+    type: 'doSignUp',
+  };
+}

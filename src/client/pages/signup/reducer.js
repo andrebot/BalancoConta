@@ -48,6 +48,44 @@ export default (state, action) => {
           confirmPassword: action.confirmPassword,
         };
       }
+    case 'doSignUp':
+      const { username, password, confirmPassword } = state;
+      const usernameErrors = [];
+      const passwordErrors = [];
+      const confirmPasswordErrors = [];
+      let hasError = false;
+
+      if (!username) {
+        usernameErrors.push('required');
+        hasError = true;
+      }
+
+      if (!password) {
+        passwordErrors.push('required');
+        hasError = true;
+      }
+
+      if (!confirmPassword) {
+        confirmPasswordErrors.push('required');
+        hasError = true;
+      } else if (password !== confirmPassword) {
+        confirmPasswordErrors.push('notEqual');
+        hasError = true;
+      }
+
+      if (hasError) {
+        return {
+          ...state,
+          usernameErrors,
+          passwordErrors,
+          confirmPasswordErrors,
+        }
+      } else {
+        return {
+          ...state,
+          isRegistering: true,
+        }
+      }
     default:
       return state;
   }
