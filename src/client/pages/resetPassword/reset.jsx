@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { sendResetEmail, setEmail, emailSent } from './actions.js';
 import reducer from './reducer.js';
@@ -18,14 +18,15 @@ const page = () => {
     emailHasBeenSent: false,
     hasErrorFromServer: false,
   });
-  const resetEmail = email => {
-    dispatch(sendResetEmail(email));
-    setTimeout(()=> dispatch(emailSent()), 3000);
-  };
+  const resetEmail = email => dispatch(sendResetEmail(email));
   const setEmailAction = email => dispatch(setEmail(email));
-  const backToLogin = () => {
-    history.push('/');
-  };
+  const backToLogin = () => history.push('/');
+
+  useEffect(() => {
+    if (state.isSendingEmail && !state.emailHasBeenSent) {
+      setTimeout(() => dispatch(emailSent()), 3000);
+    }
+  }, [state.isSendingEmail]);
 
   return (
     <div className="reset-page">
@@ -65,7 +66,7 @@ const page = () => {
           <div className={`bar-holder ${state.isSendingEmail ? 'loading' : ''}`}>
             <ProgressBar />
           </div>
-          <div className={`error-message ${state.hasErrorFromServer ? 'has-error' : ''}`}>
+          <div className={`reset-error ${state.hasErrorFromServer ? 'has-error' : ''}`}>
             <span>{state.errorFromServer}</span>
           </div>
         </div>
