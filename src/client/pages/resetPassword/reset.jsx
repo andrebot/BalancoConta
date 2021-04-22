@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
-import { sendResetEmail, setEmail } from './actions.js';
+import { sendResetEmail, setEmail, emailSent } from './actions.js';
 import reducer from './reducer.js';
 import './reset.styl';
 
@@ -18,7 +18,10 @@ const page = () => {
     emailHasBeenSent: false,
     hasErrorFromServer: false,
   });
-  const resetEmail = email => dispatch(sendResetEmail(email));
+  const resetEmail = email => {
+    dispatch(sendResetEmail(email));
+    setTimeout(()=> dispatch(emailSent()), 3000);
+  };
   const setEmailAction = email => dispatch(setEmail(email));
   const backToLogin = () => {
     history.push('/');
@@ -31,20 +34,25 @@ const page = () => {
       </div>
       <div className="bottom-section">
         <div className="reset-wrapper">
-          <FormInput
-            label="Email"
-            name="username"
-            errors={state.emailErrors}
-            value={state.email}
-            setValue={setEmailAction}
-            disabled={state.isSendingEmail}
-          >
-            <span htmlFor="required">Please add your email</span>
-          </FormInput>
-          <Button style={{ marginBottom: 10, marginTop: 20 }} action={resetEmail}>
+          <div className={`reset-input-wrapper ${state.emailHasBeenSent ? 'sent' : ''}`}>
+            <FormInput
+              label="Email"
+              name="username"
+              errors={state.emailErrors}
+              value={state.email}
+              setValue={setEmailAction}
+              disabled={state.isSendingEmail}
+            >
+              <span htmlFor="required">Please add your email</span>
+            </FormInput>
+          </div>
+          <div className={`email-sent ${state.emailHasBeenSent ? 'sent' : ''}`}>
+            <span>An email with a new password was sent to your email. Use it to reset your password</span>
+          </div>
+          <Button style={{ marginBottom: 10, marginTop: 20 }} action={resetEmail} disabled={state.isSendingEmail}>
             Reset Password
           </Button>
-          <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin}>
+          <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin} disabled={state.isSendingEmail}>
             Cancel
           </Button>
           <div className={`bar-holder ${state.isSendingEmail ? 'loading' : ''}`}>

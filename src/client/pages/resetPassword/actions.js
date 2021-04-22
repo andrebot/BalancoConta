@@ -11,3 +11,9 @@ export function sendResetEmail (email) {
     email,
   };
 }
+
+export function emailSent() {
+  return {
+    type: 'emailSent',
+  };
+}

@@ -26,7 +26,12 @@ export default (state, action) => {
           isSendingEmail: true,
         }
       }
-      break;
+    case 'emailSent':
+      return {
+        ...state,
+        emailHasBeenSent: true,
+        isSendingEmail: false,
+      }
     default:
       return state;
   }
