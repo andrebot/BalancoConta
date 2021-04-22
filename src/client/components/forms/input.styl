@@ -8,7 +8,7 @@
 
     &.error
       label
-        border-bottom: 1px solid #d02626 !important
+        border-bottom: 1px solid errorFontColor !important
 
     input
       height: 100%
@@ -18,7 +18,7 @@
       outline: none
       font-size: 1.25rem
 
-      &:focus 
+      &:focus
         &+ .label-name
           & .content-name
             transform: translateY(-120%)
@@ -28,9 +28,10 @@
           &::after
             transform: translateX(0%)
 
-      &:valid + .label-name .content-name
-        transform: translateY(-120%)
-        font-size: 14px
+      &:valid, &:disabled 
+        &+ .label-name .content-name
+          transform: translateY(-120%)
+          font-size: 14px
 
     label
       position: absolute
@@ -62,5 +63,5 @@
     min-height: 16px
 
     div
-      color: #d02626
+      color: errorFontColor
       font-size: 14px

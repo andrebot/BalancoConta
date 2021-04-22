@@ -1,6 +1,13 @@
-export function setUsername (username) {
+export function setEmail (email) {
   return {
-    type: 'username',
-    username,
+    type: 'setEmail',
+    email,
+  };
+}
+
+export function sendResetEmail (email) {
+  return {
+    type: 'sendResetEmail',
+    email,
   };
 }

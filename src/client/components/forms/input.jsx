@@ -3,7 +3,16 @@ import propTypes from 'prop-types';
 import { throttle } from 'throttle-debounce';
 import './input.styl';
 
-const FormInput = ({ label, type = 'text', name, children, value, setValue, errors = [] }) => {
+const FormInput = ({
+  label,
+  name,
+  children,
+  value,
+  setValue,
+  disabled = false,
+  errors = [],
+  type = 'text',
+}) => {
   const errorMessages = children ? [].concat(children) : [];
   const setValueThro = throttle(1000, value => setValue(value));
   const onChange = evt => {
@@ -15,7 +24,15 @@ const FormInput = ({ label, type = 'text', name, children, value, setValue, erro
   return (
     <div className="form-input-wrapper">
       <div className="form-input">
-        <input value={value} onChange={onChange} type={type} name={name} autoComplete="off" required/>
+        <input 
+          value={value}
+          onChange={onChange}
+          type={type}
+          name={name}
+          autoComplete="off"
+          required
+          disabled={disabled}
+        />
         <label htmlFor={name} className="label-name">
           <span className="content-name">{label}</span>
         </label>
@@ -37,6 +54,7 @@ FormInput.propTypes = {
   name: propTypes.string.isRequired,
   type: propTypes.string,
   errors: propTypes.arrayOf(propTypes.string),
+  disabled: propTypes.bool,
   children: propTypes.oneOfType([
     propTypes.arrayOf(propTypes.node),
     propTypes.node,
@@ -49,6 +67,8 @@ FormInput.propTypes = {
 
 FormInput.defaultProps = {
   type: 'text',
+  disabled: false,
+  errors: [],
 };
 
 export default FormInput;
