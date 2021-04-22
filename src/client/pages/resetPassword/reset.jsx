@@ -49,12 +49,19 @@ const page = () => {
           <div className={`email-sent ${state.emailHasBeenSent ? 'sent' : ''}`}>
             <span>An email with a new password was sent to your email. Use it to reset your password</span>
           </div>
-          <Button style={{ marginBottom: 10, marginTop: 20 }} action={resetEmail} disabled={state.isSendingEmail}>
-            Reset Password
-          </Button>
-          <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin} disabled={state.isSendingEmail}>
-            Cancel
-          </Button>
+          <div className={`reset-buttons ${state.emailHasBeenSent ? 'sent' : ''}`}>
+            <Button style={{ marginBottom: 10, marginTop: 20 }} action={resetEmail} disabled={state.isSendingEmail}>
+              Reset Password
+            </Button>
+            <Button style={{ marginBottom: 10 }} type={"type2"} action={backToLogin} disabled={state.isSendingEmail}>
+              Cancel
+            </Button>
+          </div>
+          <div className={`ok-button ${state.emailHasBeenSent ? 'sent' : ''}`}>
+            <Button style={{ marginBottom: 10, marginTop: 20 }} action={backToLogin}>
+              OK
+            </Button>
+          </div>
           <div className={`bar-holder ${state.isSendingEmail ? 'loading' : ''}`}>
             <ProgressBar />
           </div>
