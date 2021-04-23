@@ -9,9 +9,9 @@ const TopBar = () => {
 
   return (
     <div className="top-bar">
-      <div>oi</div>
+      <div className="app-menu">oi</div>
       <div className="app-title">Finanças</div>
-      <div>olá {user.name}</div>
+      <div className="user-menu">Hello {user.name}</div>
     </div>
   );
 };
