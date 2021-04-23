@@ -8,8 +8,11 @@ import FormInput from '../../components/forms/input.jsx';
 import Button from '../../components/button/button.jsx';
 import ProgressBar from '../../components/progressbar/progressbar.jsx';
 
+import { useAuth } from '../../hooks/authContext.jsx';
+
 const page = () => {
   const history = useHistory();
+  const { setUser } = useAuth();
   const [state, dispatch] = useReducer(reducer, {
     username: '',
     password: '',
@@ -27,7 +30,15 @@ const page = () => {
 
   useEffect(() => {
     if (state.isLoggingIn && !state.hasLoggedIn) {
-      setTimeout(() => history.push('/main/dashboard'), 1000);
+      setTimeout(() => {
+        setUser({
+          name: 'André',
+          email: 'andre@gmail.com',
+          level: 'admin',
+          token: 'ksjhdfkjsh.akjsdhksdfhikauyhrkjahsidfuhkjh.akjshduysfgdahufsdgbukydfjgh',
+        });
+        history.push('/main/dashboard');
+      }, 1000);
     }
   }, [state.isLoggingIn]);
 
