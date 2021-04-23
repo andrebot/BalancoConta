@@ -14,7 +14,6 @@ export default (state, action) => {
           password: action.password
         };
       }
-      break;
     case 'username':
       if (!action.username) {
         return {
@@ -29,7 +28,27 @@ export default (state, action) => {
           username: action.username,
         };
       }
-      break;
+    case 'startLogin':
+      const usernameErrors = [];
+      const passwordErrors = [];
+      let hasError = false;
+
+      if (!state.username) {
+        usernameErrors.push('required');
+        hasError = true;
+      }
+
+      if (!state.password) {
+        passwordErrors.push('required');
+        hasError = true;
+      }
+
+      return {
+        ...state,
+        usernameErrors,
+        passwordErrors,
+        isLoggingIn: !hasError,
+      }
     default:
       return state;
   }

@@ -1,11 +1,12 @@
 import React, { useReducer } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { setUsername, setPassword } from './actions.js';
+import { setUsername, setPassword, startLogin } from './actions.js';
 import reducer from './reducer.js';
 import './login.styl';
 
 import FormInput from '../../components/forms/input.jsx';
 import Button from '../../components/button/button.jsx';
+import ProgressBar from '../../components/progressbar/progressbar.jsx';
 
 const page = () => {
   const history = useHistory();
@@ -14,9 +15,12 @@ const page = () => {
     password: '',
     usernameErrors: [],
     passwordErrors: [],
+    isLoggingIn: false,
+    hasLoggedIn: false,
   });
   const setUsernameAction = username => dispatch(setUsername(username));
   const setPasswordAction = password => dispatch(setPassword(password));
+  const startLoginAction = () => dispatch(startLogin());
   const goToResetPassword = () => {
     history.push('/resetpassword');
   };
@@ -35,6 +39,7 @@ const page = () => {
             errors={state.usernameErrors}
             value={state.username}
             setValue={setUsernameAction}
+            disabled={state.isLoggingIn}
           >
             <span htmlFor="required">Please add your username</span>
           </FormInput>
@@ -45,13 +50,30 @@ const page = () => {
             errors={state.passwordErrors}
             value={state.password}
             setValue={setPasswordAction}
+            disabled={state.isLoggingIn}
           >
             <span htmlFor="required">Please add your password</span>
           </FormInput>
-          <Button style={{ marginBottom: 10, marginTop: 20 }}>Login</Button>
-          <Button style={{ marginBottom: 10 }} type={"type2"} action={goToResetPassword}>Reset password</Button>
+          <Button
+            style={{ marginBottom: 10, marginTop: 20 }}
+            disabled={state.isLoggingIn}
+            action={startLoginAction}
+          >
+            Login
+          </Button>
+          <Button
+            style={{ marginBottom: 10 }}
+            type={"type2"}
+            action={goToResetPassword}
+            disabled={state.isLoggingIn}
+          >
+            Reset password
+          </Button>
           <div className="new-account-link">
             <span>Need an account? <Link to="/signup">Sign up</Link></span>
+          </div>
+          <div className={`loading-bar ${state.isLoggingIn ? 'loading' : ''}`}>
+            <ProgressBar />
           </div>
         </div>
       </div>

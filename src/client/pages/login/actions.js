@@ -11,3 +11,9 @@ export function setPassword (password) {
     password,
   };
 }
+
+export function startLogin () {
+  return {
+    type: 'startLogin',
+  };
+}
