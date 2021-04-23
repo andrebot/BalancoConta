@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { setUsername, setPassword, startLogin } from './actions.js';
 import reducer from './reducer.js';
@@ -24,6 +24,12 @@ const page = () => {
   const goToResetPassword = () => {
     history.push('/resetpassword');
   };
+
+  useEffect(() => {
+    if (state.isLoggingIn && !state.hasLoggedIn) {
+      setTimeout(() => history.push('/main/dashboard'), 1000);
+    }
+  }, [state.isLoggingIn]);
 
   return (
     <div className="login-page">
