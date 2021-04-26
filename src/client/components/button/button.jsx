@@ -10,6 +10,7 @@ const Button = function ({
   style,
   type = '',
   icon,
+  iconSide = 'left',
 }) {
   const debounceAction = debounce(200, evt => action(evt));
   const createRipple = (evt) => {
@@ -38,7 +39,9 @@ const Button = function ({
   return (
     <div style={style}>
       <button className={`button ${type} ${disabled ? 'disabled' : ''}`} onClick={createRipple} disabled={disabled}>
-        {icon && <img src={icon} />}{children}
+        {(icon && iconSide === 'left') && <img src={icon} />}
+        {children}
+        {(icon && iconSide === 'right') && <img src={icon} />}
       </button>
     </div>
   );
@@ -53,6 +56,7 @@ Button.propTypes = {
   action: propTypes.func,
   style: propTypes.object,
   icon: propTypes.string,
+  iconSide: propTypes.string,
   type: propTypes.oneOf([
     'type2',
     '',
@@ -62,6 +66,7 @@ Button.propTypes = {
 Button.defaultProps = {
   disabled: false,
   type: '',
+  iconSide: 'left',
 };
 
 export default Button;

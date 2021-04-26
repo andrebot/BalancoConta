@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Button from '../button/button.jsx';
 
 import './menuButton.styl';
@@ -32,7 +33,7 @@ const MenuButton = ({ text, children }) => {
   return (
     <div className={`dropdown-menu-buttton ${active ? 'active' : ''}`}>
       <div className="dropdown-button">
-        <Button action={toggleActive}>
+        <Button action={toggleActive} icon={'/icons/down-chevron.svg'} iconSide="right">
           {text}
         </Button>
       </div>
@@ -43,6 +44,14 @@ const MenuButton = ({ text, children }) => {
       </div>
     </div>
   );
+};
+
+MenuButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default MenuButton;
