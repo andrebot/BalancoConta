@@ -1,0 +1,41 @@
+@import '../../colors.styl'
+
+.menu-slide-button
+  &.active
+    .slide-menu
+      left: 0px
+      transition: left 0.25s ease-in
+    
+    .overlay
+      display: block
+
+  .button
+    box-shadow: none
+    background-color: primary900
+
+    img
+      height: 30px
+
+  .slide-menu
+    position: absolute
+    width: 400px
+    height: 100vh
+    background-color: #ffffff
+    top: 0
+    left: -400px
+    transition: left 0.25s ease-in
+    z-index: 11
+    color: #000000
+
+    .menu-item
+      padding 20px
+
+  .overlay
+    position: absolute
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0,0,0, 0.3)
+    display: none
+    z-index: 10
+    top: 0
+    left: 0
