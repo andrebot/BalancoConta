@@ -3,7 +3,14 @@ import propTypes from 'prop-types';
 import { debounce } from 'throttle-debounce';
 import './button.styl';
 
-const Button = function ({ children, disabled = false, action, style, type = '' }) {
+const Button = function ({
+  children,
+  disabled = false,
+  action,
+  style,
+  type = '',
+  icon,
+}) {
   const debounceAction = debounce(200, evt => action(evt));
   const createRipple = (evt) => {
     const btn = evt.target;
@@ -31,7 +38,7 @@ const Button = function ({ children, disabled = false, action, style, type = '' 
   return (
     <div style={style}>
       <button className={`button ${type} ${disabled ? 'disabled' : ''}`} onClick={createRipple} disabled={disabled}>
-        {children}
+        {icon && <img src={icon} />}{children}
       </button>
     </div>
   );
@@ -45,6 +52,7 @@ Button.propTypes = {
   disabled: propTypes.bool,
   action: propTypes.func,
   style: propTypes.object,
+  icon: propTypes.string,
   type: propTypes.oneOf([
     'type2',
     '',

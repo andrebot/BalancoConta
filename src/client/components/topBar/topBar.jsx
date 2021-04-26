@@ -14,8 +14,8 @@ const TopBar = () => {
       <div className="app-title">Finanças</div>
       <div className="user-menu">
         <MenuButton text={`Hello, ${user.name}`}>
-          <DropDownMenuItem text="Settings"></DropDownMenuItem>
-          <DropDownMenuItem text="Logout"></DropDownMenuItem>
+          <DropDownMenuItem text="Settings" icon={'/icons/settings.svg'}></DropDownMenuItem>
+          <DropDownMenuItem text="Logout" icon={'/icons/logout.svg'}></DropDownMenuItem>
         </MenuButton>
       </div>
     </div>
