@@ -4,10 +4,10 @@ import Button from '../button/button.jsx';
 
 import './dropdownMenuItem.styl';
 
-const DropdownMenuItem = ({ icon, text }) => {
+const DropdownMenuItem = ({ icon, text, action }) => {
   return (
     <div className="dropdown-menu-item">
-      <Button icon={icon}>
+      <Button icon={icon} action={action}>
         {text}
       </Button>
     </div>
@@ -17,6 +17,7 @@ const DropdownMenuItem = ({ icon, text }) => {
 DropdownMenuItem.propTypes = {
   icon: PropTypes.string,
   text: PropTypes.string.isRequired,
+  action: PropTypes.func,
 };
 
 export default DropdownMenuItem;
