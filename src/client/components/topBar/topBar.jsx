@@ -11,11 +11,16 @@ const TopBar = () => {
   const { user } = useAuth();
   const history = useHistory();
   const logout = () => history.push('/');
+  // const dashboard = () => history.push('/main/dashboard');
 
   return (
     <div className="top-bar">
       <div className="app-menu">
-        <MenuSlideButton />
+        <MenuSlideButton>
+          <div className="menu-item">
+            <span href="/main/dashboard">Dashboard</span>
+          </div>
+        </MenuSlideButton>
       </div>
       <div className="app-title">Finanças</div>
       <div className="user-menu">
