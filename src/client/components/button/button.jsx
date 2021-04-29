@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import propTypes from 'prop-types';
 import { debounce } from 'throttle-debounce';
 import './button.styl';
@@ -11,10 +11,12 @@ const Button = function ({
   type = '',
   icon,
   iconSide = 'left',
+  isCircle = false,
 }) {
+  const bttnRef = useRef(null);
   const debounceAction = debounce(200, evt => action(evt));
   const createRipple = (evt) => {
-    const btn = evt.target;
+    const btn = bttnRef.current;
     const circle = document.createElement('span');
     const diameter = Math.max(btn.clientWidth, btn.clientHeight);
     const radius = diameter / 2;
@@ -38,7 +40,12 @@ const Button = function ({
 
   return (
     <div style={style}>
-      <button className={`button ${type} ${disabled ? 'disabled' : ''}`} onClick={createRipple} disabled={disabled}>
+      <button
+        className={`button ${type} ${disabled ? 'disabled' : ''} ${isCircle ? 'circle' : ''}`}
+        onClick={createRipple} 
+        disabled={disabled}
+        ref={bttnRef}
+      >
         {(icon && iconSide === 'left') && <img src={icon} />}
         {children}
         {(icon && iconSide === 'right') && <img src={icon} />}
@@ -57,6 +64,7 @@ Button.propTypes = {
   style: propTypes.object,
   icon: propTypes.string,
   iconSide: propTypes.string,
+  isCircle: propTypes.bool,
   type: propTypes.oneOf([
     'type2',
     '',
@@ -67,6 +75,7 @@ Button.defaultProps = {
   disabled: false,
   type: '',
   iconSide: 'left',
+  isCircle: false,
 };
 
 export default Button;
