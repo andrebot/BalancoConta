@@ -48,7 +48,7 @@ const page = () => {
         <span className="page-title">Finanças</span>
       </div>
       <div className="bottom-section">
-        <div className="login-wrapper">
+        <div className="container login-wrapper">
           <div className="title">Login</div>
           <FormInput
             label="Email"
