@@ -39,7 +39,7 @@ const Button = function ({
   };
 
   return (
-    <div style={style}>
+    <div className="button-wrap" style={style}>
       <button
         className={`button ${type} ${disabled ? 'disabled' : ''} ${isCircle ? 'circle' : ''}`}
         onClick={createRipple} 

@@ -15,3 +15,41 @@
       justify-content: space-between
       align-items: center
       margin-bottom: 20px
+
+// Segunda Versão
+.acc-page
+  display: grid
+  grid-template-columns: 25% 50% 25%
+  grid-template-rows: 100%
+  grid-template-areas: "leftPanel content rightPanel"
+
+  .left-panel
+    grid-area: leftPanel
+  
+  .content
+    grid-area: content
+    display: flex
+
+    .main
+      flex-grow: 2
+    
+    .button-wrap
+      &:last-child
+        img
+          transform: rotate(-90deg)
+      .button
+        background-color: #ffffff
+        box-shadow: none
+
+      img
+        transform: rotate(90deg)
+
+  .right-panel
+    grid-area: rightPanel
+
+  .container-title
+    text-align: center
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 20px
