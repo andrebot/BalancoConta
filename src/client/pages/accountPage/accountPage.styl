@@ -20,8 +20,20 @@
 .acc-page
   display: grid
   grid-template-columns: 25% 50% 25%
-  grid-template-rows: 100%
-  grid-template-areas: "leftPanel content rightPanel"
+  grid-template-rows: auto
+  grid-template-areas: "header header header" "leftPanel content rightPanel"
+
+  .header
+    grid-area: header
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 30px 0px
+
+    .month-title
+      font-size: 32px
+      color: analogousD900
+      margin: 0 10px
 
   .left-panel
     grid-area: leftPanel
@@ -32,17 +44,20 @@
 
     .main
       flex-grow: 2
-    
-    .button-wrap
-      &:last-child
-        img
-          transform: rotate(-90deg)
-      .button
-        background-color: #ffffff
-        box-shadow: none
 
+      .button-wrap .button
+        background-color: primary800
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3)
+  .slider .button-wrap
+    &:last-child
       img
-        transform: rotate(90deg)
+        transform: rotate(-90deg)
+    .button
+      background-color: #ffffff
+      box-shadow: none
+
+    img
+      transform: rotate(90deg)
 
   .right-panel
     grid-area: rightPanel

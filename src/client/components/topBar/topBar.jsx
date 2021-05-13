@@ -18,7 +18,7 @@ const TopBar = () => {
       <div className="app-menu">
         <MenuSlideButton>
           <div className="menu-item">
-            <span href="/main/dashboard">Dashboard</span>
+            <span href="/main/account-book">Account book</span>
           </div>
         </MenuSlideButton>
       </div>

@@ -28,7 +28,7 @@ render(
             <div className="pages">
               <TopBar />
               <Switch>
-                <Route path="/main/dashboard">
+                <Route path="/main/account-book">
                   <AcctPage />
                 </Route>
               </Switch>

@@ -37,7 +37,7 @@ const page = () => {
           level: 'admin',
           token: 'ksjhdfkjsh.akjsdhksdfhikauyhrkjahsidfuhkjh.akjshduysfgdahufsdgbukydfjgh',
         });
-        history.push('/main/dashboard');
+        history.push('/main/account-book');
       }, 1000);
     }
   }, [state.isLoggingIn]);

@@ -5,7 +5,47 @@ import './accountPage.styl';
 export default () => {
   return (
     <div className="acc-page">
+      <div className="header slider">
+        <Button icon="/icons/down-chevron-black.svg" />
+        <div>
+          <span className="month-title">May - 2021</span>
+        </div>
+        <Button icon="/icons/down-chevron-black.svg" />
+      </div>
       <div className="left-panel">
+        <div className="container page-containers">
+          <div className="container-title">
+            <div></div>
+            <span>Account Balance</span>
+            <Button icon="/icons/plus.svg" isCircle={true}/>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Inter PF</td>
+                <td>R$ 650,00</td>
+              </tr>
+              <tr>
+                <td>Brasil PF</td>
+                <td>R$ 543,00</td>
+              </tr>
+              <tr>
+                <td>Brasil PJ</td>
+                <td>R$ 543,00</td>
+              </tr>
+              <tr>
+                <td>XP Invest</td>
+                <td>R$ 543,00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div className="container page-containers">
           <div className="container-title">
             <div></div>
@@ -69,8 +109,8 @@ export default () => {
           </table>
         </div>
       </div>
-      <div className="content">
-        <Button icon="/icons/down-chevron-black.svg" isCricle={true}></Button>
+      <div className="content slider">
+        <Button icon="/icons/down-chevron-black.svg"></Button>
         <div className="container main">
           <div className="container-title">
             <div></div>
@@ -82,8 +122,8 @@ export default () => {
               <tr>
                 <th>Item</th>
                 <th>Date</th>
-                <th>Bank</th>
-                <th>Type</th>
+                <th>Account</th>
+                <th>Category</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -154,7 +194,7 @@ export default () => {
             </tbody>
           </table>
         </div>
-        <Button icon="/icons/down-chevron-black.svg" isCricle={true}></Button>
+        <Button icon="/icons/down-chevron-black.svg"></Button>
       </div>
       <div className="right-panel">
         <div className="container page-containers">
