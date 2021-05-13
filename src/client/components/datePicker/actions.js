@@ -1,10 +1,12 @@
 export const setYear = year => ({
   type: 'setYear',
+  content: 'month',
   year,
 });
 
 export const setMonth = month => ({
   type: 'setMonth',
+  content: 'weekDays',
   month,
 });
 

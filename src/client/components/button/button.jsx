@@ -12,6 +12,7 @@ const Button = function ({
   icon,
   iconSide = 'left',
   isCircle = false,
+  additionalClass = '',
 }) {
   const bttnRef = useRef(null);
   const debounceAction = debounce(200, evt => action(evt));
@@ -39,7 +40,7 @@ const Button = function ({
   };
 
   return (
-    <div className="button-wrap" style={style}>
+    <div className={`button-wrap ${additionalClass}`} style={style}>
       <button
         className={`button ${type} ${disabled ? 'disabled' : ''} ${isCircle ? 'circle' : ''}`}
         onClick={createRipple} 
@@ -65,6 +66,7 @@ Button.propTypes = {
   icon: propTypes.string,
   iconSide: propTypes.string,
   isCircle: propTypes.bool,
+  additionalClass: propTypes.string,
   type: propTypes.oneOf([
     'type2',
     'type3',
@@ -77,6 +79,7 @@ Button.defaultProps = {
   type: '',
   iconSide: 'left',
   isCircle: false,
+  additionalClass: '',
 };
 
 export default Button;

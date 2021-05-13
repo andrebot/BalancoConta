@@ -4,11 +4,13 @@ export default (state, action) => {
       return {
         ...state,
         year: action.year,
+        content: action.content,
       };
     case 'setMonth':
       return {
         ...state,
         month: action.month,
+        content: action.content,
       };
     case 'setDay':
       return {

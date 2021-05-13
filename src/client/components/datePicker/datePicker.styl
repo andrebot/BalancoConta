@@ -60,6 +60,33 @@
             color: primary800
             font-weight: 800
 
+      .months-list
+        display: flex
+        flex-flow: column
+        height: 100%
+
+        .selected-year
+          flex-grow: 0
+          padding: 10px 0 20px 0
+
+        .months
+          flex-grow: 1
+          display: flex
+          flex-wrap: wrap
+
+          .button-wrap
+            width: 33%
+
+            .type3
+              color: #000000
+
+            &.selected .type3
+              color: primary800
+              font-weight: 800
+
+      .week-days
+        height: 100%
+
     .buttons-wrapper
       flex-grow: 0
       display: flex
