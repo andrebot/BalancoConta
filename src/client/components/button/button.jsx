@@ -67,6 +67,7 @@ Button.propTypes = {
   isCircle: propTypes.bool,
   type: propTypes.oneOf([
     'type2',
+    'type3',
     '',
   ]),
 };

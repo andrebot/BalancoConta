@@ -16,7 +16,7 @@
   cursor: pointer
   height: 100%
   width: 100%
-  padding: 10px 0px
+  padding: 10px 10px
   display: flex
   align-items: center
   justify-content: space-around
@@ -33,6 +33,17 @@
   &.type2
     background-color: primary50
     color: #000
+
+    span.ripple
+      background-color: rgba(0, 0, 0, 0.7)
+
+  &.type3
+    background-color: #ffffff
+    box-shadow: none
+    color: primary800
+
+    &:hover
+      background-color: primary100
 
     span.ripple
       background-color: rgba(0, 0, 0, 0.7)

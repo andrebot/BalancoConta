@@ -1,0 +1,70 @@
+@import '../../colors.styl'
+
+.date-picker
+  width: 470px
+  height: 316px
+  overflow: hidden
+  display: grid
+  grid-template-columns: 150px auto
+  grid-template-rows: 100%
+  grid-template-areas: "sidePanel content"
+  box-shadow: 1px 1px 5px 0 #000
+  border-radius: 2px
+
+  .side-panel
+    grid-area: sidePanel
+    background-color: primary600
+    color: #cccccc
+    display: flex
+    flex-flow: column
+    justify-content: flex-start
+    padding: 20px
+
+    .active
+      color: #ffffff
+
+    .year
+      font-size: 16px
+      font-weight: 700
+      text-align: start
+      cursor pointer
+
+    .day
+      font-size: 32px
+      font-weight: 900
+      text-align: start
+      cursor pointer
+
+  .content
+    grid-area: content
+    display: flex
+    flex-flow: column
+
+    .main
+      flex-grow: 1
+      overflow: hidden
+
+      .years-list
+        display: flex
+        flex-flow: column
+        height: 100%
+        overflow: auto
+
+        .year
+          padding: 10px
+          font-size: 16px
+          cursor pointer
+
+          &.selected
+            font-size: 24px
+            color: primary800
+            font-weight: 800
+
+    .buttons-wrapper
+      flex-grow: 0
+      display: flex
+      justify-content: flex-end
+      padding: 5px 20px
+
+      .button-wrap:last-child
+        margin-left: 10px

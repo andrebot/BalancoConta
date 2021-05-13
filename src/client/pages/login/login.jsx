@@ -7,6 +7,7 @@ import './login.styl';
 import FormInput from '../../components/forms/input.jsx';
 import Button from '../../components/button/button.jsx';
 import ProgressBar from '../../components/progressbar/progressbar.jsx';
+import DatePicker from '../../components/datePicker/datePicker.jsx';
 
 import { useAuth } from '../../hooks/authContext.jsx';
 
@@ -46,6 +47,7 @@ const page = () => {
     <div className="login-page">
       <div className="top-section">
         <span className="page-title">Finanças</span>
+        <DatePicker />
       </div>
       <div className="bottom-section">
         <div className="container login-wrapper">
