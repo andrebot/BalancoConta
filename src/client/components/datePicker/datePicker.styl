@@ -89,6 +89,18 @@
         display: flex
         flex-flow: column
 
+        .month-year
+          display: flex
+          justify-content: space-between
+          margin-bottom: 10px
+
+          .button-wrap
+            img
+              transform: rotate(90deg)
+
+            &:last-child img
+              transform: rotate(-90deg)
+
         .week
           display: flex
           color: #929292

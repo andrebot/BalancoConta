@@ -23,16 +23,14 @@ export default (state, action) => {
         content: action.content,
       };
     case 'nextMonth':
-      const currentDay = state.date.getDate();
-      let nextDate = new Date(state.date.getFullYear(), state.date.getMonth() + 2, 0);
-
-      if (state.date.getDate() <= nextDate.getDate()) {
-        nextDate = new Date(nextDate.getFullYear(), nextDate.getMonth(), currentDay);
-      }
-
       return {
         ...state,
-        date: nextDate,
+        date: new Date(state.date.getFullYear(), state.date.getMonth() + 1, 1),
+      };
+    case 'previousMonth':
+      return {
+        ...state,
+        date: new Date(state.date.getFullYear(), state.date.getMonth() - 1, 1),
       };
     default:
       return state;

@@ -1,6 +1,13 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import reducer from './reducer.js';
-import { setContent, setYear, setMonth, setDay } from './actions.js';
+import {
+  setContent,
+  setYear,
+  setMonth,
+  setDay,
+  nextMonth,
+  previousMonth,
+} from './actions.js';
 import Button from '../button/button.jsx';
 import PropTypes, { element } from 'prop-types';
 
@@ -68,7 +75,7 @@ const DatePicker = setDate => {
 
   useEffect(() => {
     if (state.content === 'year') {
-      document.getElementById(`year${state.date.getFullYear()}`).scrollIntoView({ block: 'center', behavior: 'smooth' });
+      document.getElementById(`year${state.selectedDate.getFullYear()}`).scrollIntoView({ block: 'center' });
     } else if (state.content === 'month') {
       document.getElementsByClassName('months-list')[0].scrollIntoView({ behavior: 'smooth' });
     } else if (state.content === 'weekDays') {
@@ -87,14 +94,14 @@ const DatePicker = setDate => {
           className={`year ${state.content === 'year' ? 'active' : ''}`}
           onClick={() => dispatch(setContent('year'))}
         >
-          {state.date.getFullYear()}
+          {state.selectedDate.getFullYear()}
         </div>
         <div
           className={`day ${
             state.content === 'weekDays' || state.content === 'month' ? 'active' : ''}`}
           onClick={() => dispatch(setContent('weekDays'))}
         >
-          {weekDays[state.date.getDay()]}, <br/> {monthsShort[state.date.getMonth()]} {state.date.getDate()}
+          {weekDays[state.selectedDate.getDay()]}, <br/> {monthsShort[state.selectedDate.getMonth()]} {state.selectedDate.getDate()}
         </div>
       </div>
       <div className="content">
@@ -103,7 +110,7 @@ const DatePicker = setDate => {
             {years.map((year, index) => 
               <div
                 id={`year${year}`}
-                className={`year ${year === state.date.getFullYear() ? 'selected' : ''}`} 
+                className={`year ${year === state.selectedDate.getFullYear() ? 'selected' : ''}`} 
                 key={index}
                 onClick={() => dispatch(setYear(year))}
               >
@@ -112,11 +119,15 @@ const DatePicker = setDate => {
             )}
           </div>
           <div className="months-list">
-            <div className="selected-year">{state.date.getFullYear()}</div>
+            <div className="selected-year">
+              <Button type="type3" action={() => dispatch(setContent('year'))}>
+                {state.date.getFullYear()}
+              </Button>
+            </div>
             <div className="months">
               {months.map((month, index) =>
                 <Button
-                  additionalClass={month === months[state.date.getMonth()] ? 'selected' : ''}
+                  additionalClass={month === months[state.selectedDate.getMonth()] ? 'selected' : ''}
                   key={index}
                   type="type3"
                   action={() => selectMonth(index)}
@@ -128,9 +139,17 @@ const DatePicker = setDate => {
           </div>
           <div className="week-days">
               <div className="month-year">
+                <Button
+                  icon="/icons/down-chevron-black.svg"
+                  type="type3"
+                  action={() => dispatch(previousMonth())}/>
                 <Button type="type3" action={() => dispatch(setContent('month'))}>
                   {months[state.date.getMonth()]} {state.date.getFullYear()}
                 </Button>
+                <Button
+                  icon="/icons/down-chevron-black.svg"
+                  type="type3"
+                  action={() => dispatch(nextMonth())}/>
               </div>
               <div className="week">
                 {weekDaysShort.map((weekday, index) => <div key={index}>{weekday}</div>)}
