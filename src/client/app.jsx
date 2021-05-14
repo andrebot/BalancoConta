@@ -6,8 +6,7 @@ import Login from './pages/login/login.jsx';
 import SignUp from './pages/signup/signup.jsx';
 import ResetPassword from './pages/resetPassword/reset.jsx';
 import TopBar from './components/topBar/topBar.jsx';
-// import AcctPage from './pages/accountPage/accountPage.jsx';
-import AcctPage from './pages/accountPage/accountPage2.jsx';
+import AcctPage from './pages/accountPage/accountPage.jsx';
 import './app.styl';
 
 render(
