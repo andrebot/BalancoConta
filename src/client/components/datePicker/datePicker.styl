@@ -86,6 +86,34 @@
 
       .week-days
         height: 100%
+        display: flex
+        flex-flow: column
+
+        .week
+          display: flex
+          color: #929292
+          margin-bottom: 10px
+
+          div
+            width: 14%
+
+        .days
+          display: flex
+          flex-wrap: wrap
+
+          .day
+            width: 14%
+            flex-grow: 0
+            cursor pointer
+            margin-bottom: 10px
+
+            &.selected
+              color: primary700
+              font-weight: 800
+            
+            &:hover
+              background-color: primary200
+              border-radius: 10px
 
     .buttons-wrapper
       flex-grow: 0

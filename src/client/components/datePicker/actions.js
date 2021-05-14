@@ -10,9 +10,8 @@ export const setMonth = month => ({
   month,
 });
 
-export const setDay = (day, weekDay) => ({
+export const setDay = (day) => ({
   type: 'setDay',
-  weekDay,
   day,
 });
 

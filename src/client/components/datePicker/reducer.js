@@ -3,20 +3,19 @@ export default (state, action) => {
     case 'setYear':
       return {
         ...state,
-        year: action.year,
+        date: new Date(action.year, state.date.getMonth(), state.date.getDate()),
         content: action.content,
       };
     case 'setMonth':
       return {
         ...state,
-        month: action.month,
+        date: new Date(state.date.getFullYear(), action.month, state.date.getDate()),
         content: action.content,
       };
     case 'setDay':
       return {
         ...state,
-        day: action.day,
-        weekDay: action.weekDay,
+        date: new Date(state.date.getFullYear(), state.date.getMonth(), action.day),
       };
     case 'setContent':
       return {
