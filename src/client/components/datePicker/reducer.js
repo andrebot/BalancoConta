@@ -15,12 +15,24 @@ export default (state, action) => {
     case 'setDay':
       return {
         ...state,
-        date: new Date(state.date.getFullYear(), state.date.getMonth(), action.day),
+        selectedDate: new Date(state.date.getFullYear(), state.date.getMonth(), action.day),
       };
     case 'setContent':
       return {
         ...state,
         content: action.content,
+      };
+    case 'nextMonth':
+      const currentDay = state.date.getDate();
+      let nextDate = new Date(state.date.getFullYear(), state.date.getMonth() + 2, 0);
+
+      if (state.date.getDate() <= nextDate.getDate()) {
+        nextDate = new Date(nextDate.getFullYear(), nextDate.getMonth(), currentDay);
+      }
+
+      return {
+        ...state,
+        date: nextDate,
       };
     default:
       return state;

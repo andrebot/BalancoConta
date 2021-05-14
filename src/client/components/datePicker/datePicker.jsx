@@ -6,62 +6,69 @@ import PropTypes, { element } from 'prop-types';
 
 import './datePicker.styl';
 
-const DatePicker = () => {
+const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const weekDaysShort = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+const years = [];
+
+for (let year = 1900; year < 2100; year++) {
+  years.push(year);
+}
+
+const DatePicker = setDate => {
   const [state, dispatch] = useReducer(reducer, {
-    content: 'year',
+    content: 'weekDays',
     date: new Date(2021, 0, 1),
+    selectedDate: new Date(2021, 0, 1),
   });
   const [calendarWeekDays, setWeekDays] = useState([]);
-  const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const weekDaysShort = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  const years = [];
   const selectMonth = month => dispatch(setMonth(month));
   const createDays = () => {
+    const firstWeekDay = new Date(state.date.getFullYear(), state.date.getMonth(), 1).getDay();
     const daysInMonth = new Date(state.date.getFullYear(), state.date.getMonth() + 1, 0).getDate();
-    const selectedDay = state.date.getDate();
-    const selectedDayWeek = state.date.getDay();
+    const selectedDay = state.selectedDate.getDate();
+    const selectedMonth = state.selectedDate.getMonth();
+    const currentMonth = state.date.getMonth();
     const elements = [];
 
-    for (let currentWeekDay = 0; currentWeekDay < selectedDayWeek; currentWeekDay++) {
-      if (currentWeekDay < selectedDayWeek) {
-        elements.push(<div key={currentWeekDay} className="day"></div>);
+    for (let currentWeekDay = 0; currentWeekDay < firstWeekDay; currentWeekDay++) {
+      if (currentWeekDay < firstWeekDay) {
+        elements.push(<div key={currentWeekDay} className="day-fill"></div>);
       }
     }
 
     for (let currentDay = 1; currentDay <= daysInMonth; currentDay++) {
-      if (currentDay !== selectedDay) {
+      if (currentMonth !== selectedMonth || 
+          (currentMonth === selectedMonth && selectedDay !== currentDay)) {
         elements.push(
           <div
-            key={currentDay + selectedDayWeek}
+            key={currentDay + firstWeekDay}
             className="day"
             onClick={() => dispatch(setDay(currentDay))}
           >
             {currentDay}
-          </div>);
+          </div>
+        );
       } else if (currentDay === selectedDay) {
         elements.push(
           <div
-            key={currentDay + selectedDayWeek}
+            key={currentDay + firstWeekDay}
             className="day selected"
             onClick={() => dispatch(setDay(currentDay))}
           >
             {currentDay}
-          </div>);
+          </div>
+        );
       }
     }
 
     return elements;
   };
 
-  for (let year = 1900; year < 2100; year++) {
-    years.push(year);
-  }
-
   useEffect(() => {
     if (state.content === 'year') {
-      document.getElementById(`year${state.date.getFullYear()}`).scrollIntoView({ block: 'center' });
+      document.getElementById(`year${state.date.getFullYear()}`).scrollIntoView({ block: 'center', behavior: 'smooth' });
     } else if (state.content === 'month') {
       document.getElementsByClassName('months-list')[0].scrollIntoView({ behavior: 'smooth' });
     } else if (state.content === 'weekDays') {
@@ -71,7 +78,7 @@ const DatePicker = () => {
 
   useEffect(() => {
     setWeekDays(createDays());
-  }, [state.date]);
+  }, [state.date, state.selectedDate]);
 
   return (
     <div className="date-picker">
@@ -137,7 +144,7 @@ const DatePicker = () => {
           <Button type="type3">
             Cancel
           </Button>
-          <Button type="type3">
+          <Button type="type3" action={() => setDate(state.date)}>
             Ok
           </Button>
         </div>
@@ -146,6 +153,8 @@ const DatePicker = () => {
   );
 };
 
-DatePicker.propTypes = {};
+DatePicker.propTypes = {
+  // setDate: PropTypes.func.isRequired,
+};
 
 export default DatePicker;

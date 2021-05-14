@@ -19,3 +19,11 @@ export const setContent = content => ({
   type: 'setContent',
   content,
 });
+
+export const nextMonth = () => ({
+  type: 'nextMonth',
+});
+
+export const previousMonth = () => ({
+  type: 'nextMonth',
+});
