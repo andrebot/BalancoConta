@@ -23,14 +23,20 @@ for (let year = 1900; year < 2100; year++) {
   years.push(year);
 }
 
-const DatePicker = setDate => {
+const DatePicker = ({ setDate, pickMethod = 'weekDays' }) => {
   const [state, dispatch] = useReducer(reducer, {
-    content: 'weekDays',
+    content: pickMethod,
     date: new Date(2021, 0, 1),
     selectedDate: new Date(2021, 0, 1),
   });
   const [calendarWeekDays, setWeekDays] = useState([]);
-  const selectMonth = month => dispatch(setMonth(month));
+  const selectMonth = month => {
+    if (pickMethod === 'weekDays') {
+      dispatch(setMonth(month));
+    } else {
+      dispatch(setMonth(month, 'month'));
+    }
+  };
   const createDays = () => {
     const firstWeekDay = new Date(state.date.getFullYear(), state.date.getMonth(), 1).getDay();
     const daysInMonth = new Date(state.date.getFullYear(), state.date.getMonth() + 1, 0).getDate();
@@ -89,21 +95,39 @@ const DatePicker = setDate => {
 
   return (
     <div className="date-picker">
-      <div className="side-panel" >
-        <div
-          className={`year ${state.content === 'year' ? 'active' : ''}`}
-          onClick={() => dispatch(setContent('year'))}
-        >
-          {state.selectedDate.getFullYear()}
+      {pickMethod !== 'month' &&
+        <div className="side-panel" >
+          <div
+            className={`year ${state.content === 'year' ? 'active' : ''}`}
+            onClick={() => dispatch(setContent('year'))}
+          >
+            {state.selectedDate.getFullYear()}
+          </div>
+          <div
+            className={`day ${
+              state.content === 'weekDays' || state.content === 'month' ? 'active' : ''}`}
+            onClick={() => dispatch(setContent('weekDays'))}
+          >
+            {weekDays[state.selectedDate.getDay()]}, <br/> {monthsShort[state.selectedDate.getMonth()]} {state.selectedDate.getDate()}
+          </div>
         </div>
-        <div
-          className={`day ${
-            state.content === 'weekDays' || state.content === 'month' ? 'active' : ''}`}
-          onClick={() => dispatch(setContent('weekDays'))}
-        >
-          {weekDays[state.selectedDate.getDay()]}, <br/> {monthsShort[state.selectedDate.getMonth()]} {state.selectedDate.getDate()}
+      }
+      {pickMethod === 'month' &&
+        <div className="side-panel">
+          <div
+            className={`year ${state.content === 'year' ? 'active' : ''}`}
+            onClick={() => dispatch(setContent('year'))}
+          >
+            {state.selectedDate.getFullYear()}
+          </div>
+          <div
+            className={`day ${state.content === 'month' ? 'active' : ''}`}
+            onClick={() => dispatch(setContent('month'))}
+          >
+            {monthsShort[state.selectedDate.getMonth()]}
+          </div>
         </div>
-      </div>
+      }
       <div className="content">
         <div className="main">
           <div className="years-list">
@@ -163,7 +187,7 @@ const DatePicker = setDate => {
           <Button type="type3">
             Cancel
           </Button>
-          <Button type="type3" action={() => setDate(state.date)}>
+          <Button type="type3" action={() => setDate(state.selectedDate)}>
             Ok
           </Button>
         </div>
@@ -173,7 +197,15 @@ const DatePicker = setDate => {
 };
 
 DatePicker.propTypes = {
-  // setDate: PropTypes.func.isRequired,
+  setDate: PropTypes.func.isRequired,
+  pickMethod: PropTypes.oneOf([
+    'month',
+    'weekDays',
+  ]),
+};
+
+DatePicker.defaultProps = {
+  pickMethod: 'weekDays',
 };
 
 export default DatePicker;

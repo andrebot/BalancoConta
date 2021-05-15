@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/button/button.jsx';
+import DatePicker from '../../components/datePicker/datePicker.jsx';
+
+import { getMonth } from '../../helpers/date.js';
+
 import './accountPage.styl';
 
 export default () => {
+  const [date, setDate] = useState(new Date());
   return (
     <div className="acc-page">
       <div className="header slider">
         <Button icon="/icons/down-chevron-black.svg" />
         <div>
-          <span className="month-title">May - 2021</span>
+          <span className="month-title">{getMonth(date.getMonth())} - {date.getFullYear()}</span>
+          <DatePicker setDate={setDate} pickMethod="month" />
         </div>
         <Button icon="/icons/down-chevron-black.svg" />
       </div>

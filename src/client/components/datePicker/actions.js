@@ -4,9 +4,9 @@ export const setYear = year => ({
   year,
 });
 
-export const setMonth = month => ({
+export const setMonth = (month, content = 'weekDays') => ({
   type: 'setMonth',
-  content: 'weekDays',
+  content,
   month,
 });
 

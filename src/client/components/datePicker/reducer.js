@@ -7,9 +7,13 @@ export default (state, action) => {
         content: action.content,
       };
     case 'setMonth':
+      const newSelectedDate = action.content === 'month' ? 
+        new Date(state.date.getFullYear(), action.month, 1) :
+        new Date(state.date.getFullYear(), action.month, state.date.getDate());
       return {
         ...state,
-        date: new Date(state.date.getFullYear(), action.month, state.date.getDate()),
+        date: newSelectedDate,
+        selectedDate: newSelectedDate,
         content: action.content,
       };
     case 'setDay':
