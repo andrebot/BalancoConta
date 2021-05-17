@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
-    "start": "node src/server/index.js",
+    "start": "node src/server/index.js & npm run dev",
     "serve": "webpack serve"
   },
   "author": "André Almeida <ab.rodriguesalmeida@gmail.com>",

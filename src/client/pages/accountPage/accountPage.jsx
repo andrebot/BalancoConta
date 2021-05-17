@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../../components/button/button.jsx';
-import DatePicker from '../../components/datePicker/datePicker.jsx';
+import ButtonDatePicker from '../../components/datePicker/buttonDatePicker.jsx';
 
 import { getMonth } from '../../helpers/date.js';
 
@@ -13,8 +13,9 @@ export default () => {
       <div className="header slider">
         <Button icon="/icons/down-chevron-black.svg" />
         <div>
-          <span className="month-title">{getMonth(date.getMonth())} - {date.getFullYear()}</span>
-          <DatePicker setDate={setDate} pickMethod="month" />
+          <ButtonDatePicker initDate={date} setDate={setDate} pickMethod="month" type="type2">
+            {getMonth(date.getMonth())} - {date.getFullYear()}
+          </ButtonDatePicker>
         </div>
         <Button icon="/icons/down-chevron-black.svg" />
       </div>
