@@ -2,7 +2,7 @@ import React from 'react';
 
 import './table.styl';
 
-const Table = ({ children, header, data }) => {
+const Table = ({ header, data }) => {
   const emptyPlaceReg = / +/g;
 
   return (
@@ -11,7 +11,7 @@ const Table = ({ children, header, data }) => {
         <tr>
           {header && 
             header.map((head, index) => 
-              <th key={index}>{head}</th>
+              <th key={index}>{head.title}</th>
             )
           }
         </tr>
@@ -21,7 +21,7 @@ const Table = ({ children, header, data }) => {
           data.map((line, index) =>
             <tr key={`line${index}`}>
               {header.map((head, indexH) =>
-                <td key={`td${indexH}`}>{line[head.toLowerCase().replace(emptyPlaceReg, '')]}</td>
+                <td key={`td${indexH}`}>{line[head.title.toLowerCase().replace(emptyPlaceReg, '')]}</td>
               )}
             </tr>
           )
