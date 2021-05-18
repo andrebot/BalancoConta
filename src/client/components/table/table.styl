@@ -1,0 +1,23 @@
+@import '../../colors.styl'
+
+table
+  border-collapse: collapse
+  width: 100%
+
+  thead 
+    tr th
+      text-align: start
+      font-weight: 800
+      color: analogousD900
+      border-bottom: 1px solid analogousD800
+      padding: 10px 10px
+
+  tbody
+    tr
+      &:not(:last-child)
+        border-bottom: 1px solid analogousD800
+
+      &:hover
+        background-color: #efefef
+      td
+        padding 10px 10px
