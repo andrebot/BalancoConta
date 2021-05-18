@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../button/button.jsx';
 import DatePicker from '../datePicker/datePicker.jsx';
+import PropTypes from 'prop-types';
 
 import './buttonDatePicker.styl';
 
@@ -20,5 +21,27 @@ const ButtonDatePicker = ({ setDate, pickMethod, children, type, icon, isCircle,
     </div>
   );
 };
+
+ButtonDatePicker.propTypes = {
+  setDate: PropTypes.func.isRequired,
+  pickMethod: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+  type: PropTypes.oneOf([
+    'type2',
+    'type3',
+    '',
+  ]),
+  icon: PropTypes.string,
+  isCircle: PropTypes.bool,
+  initDate: PropTypes.instanceOf(Date),
+};
+
+ButtonDatePicker.defaultProps = {
+  pickMethod: 'weekDays',
+  isCircle: false,
+}
 
 export default ButtonDatePicker;
